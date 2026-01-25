@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard | Digital Habit Mirror</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- NAV BAR -->
+    <div class="nav">
+        <h2>📊 Dashboard</h2>
+        <div>
+            <a href="/log">➕ Log Habit</a>
+            <a href="/goals">🎯 Goals</a>
+            <a href="/insights">📈 Insights</a>
+            <a href="/logout">🚪 Logout</a>
+        </div>
+    </div>
+
+    <!-- WEEKLY SUMMARY -->
+    {% if summary %}
+    <div class="container" style="margin-bottom:30px;">
+        <h3>📅 Weekly Summary (Last 7 Days)</h3>
+        <p>📘 <b>Total Study Hours:</b> {{ summary.total_study }}</p>
+        <p>📱 <b>Average Phone Usage:</b> {{ summary.avg_phone }} hrs/day</p>
+        <p>😴 <b>Average Sleep:</b> {{ summary.avg_sleep }} hrs/day</p>
+        <p>😊 <b>Most Common Mood:</b> {{ summary.mood }}</p>
+    </div>
+    {% endif %}
+
+    <!-- HABIT STREAKS -->
+    <div class="container" style="margin-bottom:30px;">
+        <h3>🔥 Habit Streaks</h3>
+        <p>✅ <b>Current Streak:</b> {{ current_streak }} day(s)</p>
+        <p>🏆 <b>Longest Streak:</b> {{ longest_streak }} day(s)</p>
+    </div>
+
+    <!-- FOCUS SCORE -->
+    <div class="container" style="margin-bottom:30px;">
+        <h3>🎯 Focus Score</h3>
+        <h2>{{ focus_score }}/100</h2>
+
+        {% if focus_score >= 75 %}
+            <p style="color:green;">Excellent focus this week 👏</p>
+        {% elif focus_score >= 50 %}
+            <p style="color:orange;">Average focus — can improve 👍</p>
+        {% else %}
+            <p style="color:red;">Low focus — reduce phone usage ⚠️</p>
+        {% endif %}
+    </div>
+
+    <!-- STUDY GOALS -->
+    <div class="container" style="margin-bottom:30px;">
+        <h3>🎯 Study Goals</h3>
+
+        <p>📘 Daily Goal: <b>{{ daily_goal }} hrs</b></p>
+        <p>📅 Weekly Goal: <b>{{ weekly_goal }} hrs</b></p>
+
+        <p>
+            Today Studied: {{ goal_progress.today_study }} hrs
+            {% if goal_progress.daily_done %}
+                ✅ Goal achieved
+            {% else %}
+                ❌ Goal pending
+            {% endif %}
+        </p>
+
+        <p>
+            Weekly Studied: {{ goal_progress.weekly_study }} hrs
+            {% if goal_progress.weekly_done %}
+                ✅ Goal achieved
+            {% else %}
+                ❌ Goal pending
+            {% endif %}
+        </p>
+
+        <a href="/goals">✏️ Set / Update Goals</a>
+    </div>
+
+    <!-- WEEKLY TREND LINE CHART -->
+    <div class="container" style="margin-bottom:30px;">
+        <h3>📉 Weekly Habit Trend</h3>
+        <canvas id="weeklyTrendChart"></canvas>
+    </div>
+
+    <!-- HABIT HISTORY -->
+    <h3>🗂 Habit History</h3>
+
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Study (hrs)</th>
+            <th>Phone (hrs)</th>
+            <th>Sleep (hrs)</th>
+            <th>Mood</th>
+        </tr>
+
+        {% for h in habits %}
+        <tr>
+            <td>{{ h[4] }}</td>
+            <td>{{ h[0] }}</td>
+            <td>{{ h[1] }}</td>
+            <td>{{ h[2] }}</td>
+            <td>{{ h[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+<!-- CHART SCRIPT -->
+<script>
+new Chart(document.getElementById("weeklyTrendChart"), {
+    type: "line",
+    data: {
+        labels: {{ chart_dates | safe }},
+        datasets: [
+            {
+                label: "Study Hours",
+                data: {{ study_data | safe }},
+                borderColor: "#667eea",
+                tension: 0.3,
+                fill: false
+            },
+            {
+                label: "Phone Usage",
+                data: {{ phone_data | safe }},
+                borderColor: "#f56565",
+                tension: 0.3,
+                fill: false
+            },
+            {
+                label: "Sleep Hours",
+                data: {{ sleep_data | safe }},
+                borderColor: "#48bb78",
+                tension: 0.3,
+                fill: false
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: "bottom"
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

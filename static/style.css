@@ -1,0 +1,243 @@
+/* ===== GLOBAL RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    color: #333;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== HEADINGS ===== */
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+/* ===== LINKS ===== */
+a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== FORMS ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+select {
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+}
+
+/* ===== BUTTONS ===== */
+button {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* ===== LOGIN PAGE ===== */
+.login-box {
+    max-width: 400px;
+    margin: 80px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+}
+
+.login-box h2 {
+    margin-bottom: 25px;
+}
+
+/* ===== NAV BAR ===== */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.nav a {
+    margin-right: 15px;
+}
+
+/* ===== TABLE ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 14px;
+    text-align: center;
+}
+
+th {
+    background: #667eea;
+    color: white;
+    font-size: 15px;
+}
+
+tr:nth-child(even) {
+    background: #f5f6ff;
+}
+
+tr:hover {
+    background: #e9ebff;
+}
+
+/* ===== INSIGHTS ===== */
+.insights-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.insights-list li {
+    background: #f4f6ff;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-left: 6px solid #667eea;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* ===== SCORE ===== */
+.score {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* ===== BADGE COLORS ===== */
+.score.low {
+    color: red;
+}
+
+.score.medium {
+    color: orange;
+}
+
+.score.high {
+    color: green;
+}
+
+/* ===== FOOTER LINKS ===== */
+.back-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}
+/* LOGIN BOX */
+.login-box {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    text-align: center;
+}
+
+/* PASSWORD FIELD */
+.password-box {
+    position: relative;
+    width: 100%;
+}
+
+.password-box input {
+    width: 100%;
+    padding: 12px 40px 12px 12px;
+    margin-top: 15px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* ERROR MESSAGE */
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 16px;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insights | Digital Habit Mirror</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="nav">
+        <h2>📈 Insights</h2>
+        <div>
+            <a href="/dashboard">📊 Dashboard</a>
+            <a href="/logout">🚪 Logout</a>
+        </div>
+    </div>
+
+    <!-- BURNOUT SCORE -->
+    <div class="container" style="margin-bottom:30px;">
+        <h3>⚠ Burnout Score</h3>
+        <h2>{{ score }}/100</h2>
+
+        {% if score < 40 %}
+            <p style="color:red;">High burnout risk. Take rest ⚠️</p>
+        {% elif score < 70 %}
+            <p style="color:orange;">Moderate burnout risk</p>
+        {% else %}
+            <p style="color:green;">Healthy balance 👌</p>
+        {% endif %}
+    </div>
+
+    <!-- MOOD SUMMARY -->
+    <div class="container">
+        <h3>😊 Mood Summary</h3>
+        <ul>
+            <li>Happy: {{ moods.get("Happy", 0) }}</li>
+            <li>Neutral: {{ moods.get("Neutral", 0) }}</li>
+            <li>Sad: {{ moods.get("Sad", 0) }}</li>
+            <li>Stressed: {{ moods.get("Stressed", 0) }}</li>
+        </ul>
+    </div>
+
+    <!-- MOOD PIE CHART -->
+    <div class="container">
+        <h3>📊 Mood Distribution</h3>
+        <canvas id="moodChart"></canvas>
+    </div>
+
+</div>
+
+<script>
+new Chart(document.getElementById("moodChart"), {
+    type: "pie",
+    data: {
+        labels: ["Happy", "Neutral", "Sad", "Stressed"],
+        datasets: [{
+            data: [
+                {{ moods.get("Happy",0) }},
+                {{ moods.get("Neutral",0) }},
+                {{ moods.get("Sad",0) }},
+                {{ moods.get("Stressed",0) }}
+            ],
+            backgroundColor: ["#48bb78", "#ecc94b", "#f56565", "#667eea"]
+        }]
+    }
+});
+</script>
+
+</body>
+</html>

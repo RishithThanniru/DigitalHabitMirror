@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Habit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>📝 Log Daily Habit</h2>
+
+    <form method="POST">
+
+        <label>Study Hours</label>
+        <input type="number" name="study" min="0" max="24" required>
+
+        <label>Phone Hours</label>
+        <input type="number" name="phone" min="0" max="24" required>
+
+        <label>Sleep Hours</label>
+        <input type="number" name="sleep" min="0" max="24" required>
+
+        <label>Mood</label>
+        <select name="mood" required>
+            <option>Happy</option>
+            <option>Neutral</option>
+            <option>Sad</option>
+        </select>
+
+        <button type="submit">Save Habit</button>
+    </form>
+</div>
+
+</body>
+</html>

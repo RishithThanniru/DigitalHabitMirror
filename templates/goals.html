@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Study Goals | Digital Habit Mirror</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="nav">
+        <h2>🎯 Study Goals</h2>
+        <div>
+            <a href="/dashboard">📊 Dashboard</a>
+            <a href="/logout">🚪 Logout</a>
+        </div>
+    </div>
+
+    <form method="POST" class="container" style="margin-top:30px;">
+        <label>📘 Daily Study Goal (hours)</label>
+        <input type="number" name="daily_goal" min="0" required>
+
+        <label>📅 Weekly Study Goal (hours)</label>
+        <input type="number" name="weekly_goal" min="0" required>
+
+        <button type="submit">💾 Save Goals</button>
+    </form>
+
+</div>
+
+</body>
+</html>
